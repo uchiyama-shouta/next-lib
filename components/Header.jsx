@@ -4,7 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Drawer from "@material-ui/core/Drawer";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import DrawerList from "./DrawerList";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,8 +14,14 @@ const useStyles = makeStyles((theme) => ({
 	appBar: {
 		backgroundColor: "#1976d2",
 	},
+	justify: {
+		justifyContent: "space-between",
+	},
 	logo: {
 		marginLeft: theme.spacing(3),
+	},
+	icon: {
+		marginRight: theme.spacing(2),
 	},
 }));
 
@@ -34,27 +40,29 @@ const Header = (props) => {
 	return (
 		<div className={classes.root}>
 			<AppBar className={classes.appBar} position="static">
-				<Toolbar variant="dense">
+				<Toolbar className={classes.justify} variant="dense">
+					<Typography className={classes.logo} variant="h6" color="inherit">
+						Logo
+					</Typography>
 					<IconButton
 						edge="start"
 						color="inherit"
 						aria-label="menu"
 						onClick={toggleDrawer("right", true)}
+						className={classes.icon}
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography className={classes.logo} variant="h6" color="inherit">
-						Logos
-					</Typography>
 				</Toolbar>
 			</AppBar>
-			<Drawer
+			<SwipeableDrawer
 				anchor="right"
 				open={state.right}
 				onClose={toggleDrawer("right", false)}
+				onOpen={toggleDrawer("right", true)}
 			>
 				<DrawerList />
-			</Drawer>
+			</SwipeableDrawer>
 		</div>
 	);
 };
