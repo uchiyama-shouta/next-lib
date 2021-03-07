@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
 	return (
 		<>
          <Header state={state} setState={setState} />
-			<div>{children}</div>
+			<>{children}</>
 		</>
 	);
 };
